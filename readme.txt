@@ -13,7 +13,9 @@ Extends the Jetpack plugin and allows you to add a ManageWP.org sharing button t
 
 Important: for this plugin to work, you must activate [Jetpack](http://wordpress.org/plugins/jetpack/) first, and activate the Sharing module.
 
-This plugin is a work in progress. You can report issues [here](http://wordpress.org/extend/plugins/mwpsharing-jetpack/), or submit a pull request [on GitHub](https://github.com/jeherve/mwp-sharing-jetpack/).
+This plugin is a work in progress. You can report issues [here](http://wordpress.org/support/plugin/mwp-sharing-jetpack), or submit a pull request [on GitHub](https://github.com/jeherve/mwp-sharing-jetpack/).
+
+Kudos to [Jeff](https://twitter.com/jeffr0) who gave me the idea for this plugin ([#](http://www.wptavern.com/how-to-add-a-managewp-button-to-jetpack-sharing))!
 
 == Installation ==
 
