@@ -57,42 +57,40 @@ if ( empty( $share_plugin ) ) {
 
 } elseif ( ! class_exists( 'Sharing_Source' ) ) {
 	include_once( preg_replace( '/jetpack\.php$/i', 'modules/sharedaddy/sharing-sources.php', reset( $share_plugin ) ) );
+}
 
-	// Build button
-	class Share_Mwporg extends Sharing_Source {
-		var $shortname = 'mwp';
-		public function __construct( $id, array $settings ) {
-			parent::__construct( $id, $settings );
-			$this->smart = 'official' == $this->button_style;
-			$this->icon = 'icon' == $this->button_style;
-			$this->button_style = 'icon-text';
-		}
+// Build button
+class Share_Mwporg extends Sharing_Source {
+	var $shortname = 'mwp';
+	public function __construct( $id, array $settings ) {
+		parent::__construct( $id, $settings );
+		$this->smart = 'official' == $this->button_style;
+		$this->icon = 'icon' == $this->button_style;
+		$this->button_style = 'icon-text';
+	}
 
-		public function get_name() {
-			return __( 'ManageWP.org', 'mwpjp' );
-		}
+	public function get_name() {
+		return __( 'ManageWP.org', 'mwpjp' );
+	}
 
-
-		public function get_display( $post ) {
-			if ( $this->smart ) {
-				return '<script src="http://managewp.org/share.js" data-type="small" data-title="" data-url="'. get_permalink( $post->ID ) .'"></script>';
-			} else if ( $this->icon ) {
-				return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. get_permalink( $post->ID ) .'"><span></span></a>';
-			} else {
-				return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. get_permalink( $post->ID ) .'"><span>ManageWP.org</span></a>';
-			}
-		}
-
-		// Add the ManageWP.org Button to the list of services in Sharedaddy
-		public function inject_service( $services ) {
-			if ( ! array_key_exists( 'mwp', $services ) ) {
-				$services['mwp'] = 'Share_Mwporg';
-			}
-			return $services;
+	public function get_display( $post ) {
+		if ( $this->smart ) {
+			return '<script src="http://managewp.org/share.js" data-type="small" data-title="" data-url="'. get_permalink( $post->ID ) .'"></script>';
+		} else if ( $this->icon ) {
+			return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. get_permalink( $post->ID ) .'"><span></span></a>';
+		} else {
+			return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. get_permalink( $post->ID ) .'"><span>ManageWP.org</span></a>';
 		}
 	}
 
-} // End if class_exists( 'Sharing_Source' )
+	// Add the ManageWP.org Button to the list of services in Sharedaddy
+	public function inject_service( $services ) {
+		if ( ! array_key_exists( 'mwp', $services ) ) {
+			$services['mwp'] = 'Share_Mwporg';
+		}
+		return $services;
+	}
+}
 
 // And boom.
 Mwporg_Button::get_instance();
