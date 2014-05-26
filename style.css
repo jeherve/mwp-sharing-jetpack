@@ -1,3 +1,12 @@
-li.share-mwp a.sd-button > span {
-	background-image: url('mwp.png');
+.sd-social-icon-text li.share-mwp a.sd-button > span {
+	background: url('mwp.png') no-repeat;
+	padding-left: 20px;
+}
+
+.sd-social-icon .sd-content ul li[class*='share-'].share-mwp a.sd-button {
+	background: #2185C7 url('mwp-white.png') no-repeat;
+	color: #fff !important;
+	width: 16px;
+	height: 16px;
+	top: 16px;
 }
