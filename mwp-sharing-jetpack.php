@@ -32,7 +32,7 @@ class Mwporg_Button {
 	}
 
 	public function icon_style() {
-		wp_register_style( 'mwpjp', plugins_url('style.css', __FILE__) );
+		wp_register_style( 'mwpjp', plugins_url( 'style.css', __FILE__) );
 		wp_enqueue_style( 'mwpjp' );
 	}
 }
@@ -40,7 +40,7 @@ class Mwporg_Button {
 // Include Jetpack's sharing class, Sharing_Source
 $share_plugin = wp_get_active_and_valid_plugins();
 if ( is_multisite() ) {
-	$share_plugin = array_unique( array_merge($share_plugin, wp_get_active_network_plugins() ) );
+	$share_plugin = array_unique( array_merge( $share_plugin, wp_get_active_network_plugins() ) );
 }
 $share_plugin = preg_grep( '/\/jetpack\.php$/i', $share_plugin );
 
@@ -84,7 +84,7 @@ if ( empty( $share_plugin ) ) {
 		}
 
 		// Add the ManageWP.org Button to the list of services in Sharedaddy
-		public static function inject_service ( array $services ) {
+		public function inject_service( $services ) {
 			if ( ! array_key_exists( 'mwp', $services ) ) {
 				$services['mwp'] = 'Share_Mwporg';
 			}
