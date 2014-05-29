@@ -4,7 +4,7 @@
  * Plugin URI: http://wordpress.org/plugins/mwp-sharing-jetpack/
  * Description: Add a ManageWP.org button to the Jetpack Sharing module
  * Author: Jeremy Herve
- * Version: 1.2.2
+ * Version: 1.2.3
  * Author URI: http://jeremyherve.com
  * License: GPL2+
  * Text Domain: mwpjp
@@ -22,76 +22,44 @@ class Mwporg_Button {
 
 	private function __construct() {
 		// Check if Jetpack and the sharing module is active
-		if ( class_exists( 'Jetpack' ) && Jetpack::init()->is_module_active( 'sharedaddy' ) )
+		if ( class_exists( 'Jetpack' ) && Jetpack::init()->is_module_active( 'sharedaddy' ) ) {
 			add_action( 'plugins_loaded', array( $this, 'setup' ) );
+		} else {
+			add_action( 'admin_notices',  array( $this, 'install_jetpack' ) );
+		}
 	}
 
 	public function setup() {
-		add_filter( 'sharing_services', 	array( 'Share_Mwporg', 'inject_service' ) );
-		add_action( 'wp_enqueue_scripts', 	array( $this, 'icon_style' ) );
+		add_filter( 'sharing_services',   array( $this, 'inject_service' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'icon_style' ) );
+	}
+
+	// Add the ManageWP.org Button to the list of services in Sharedaddy
+	public function inject_service( $services ) {
+		include_once 'class.mwp-sharing-jetpack.php';
+		if ( class_exists( 'Share_Mwporg' ) ) {
+			$services['mwp'] = 'Share_Mwporg';
+		}
+		return $services;
 	}
 
 	public function icon_style() {
 		wp_register_style( 'mwpjp', plugins_url( 'style.css', __FILE__) );
 		wp_enqueue_style( 'mwpjp' );
 	}
-}
-
-// Include Jetpack's sharing class, Sharing_Source
-$share_plugin = wp_get_active_and_valid_plugins();
-if ( is_multisite() ) {
-	$share_plugin = array_unique( array_merge( $share_plugin, wp_get_active_network_plugins() ) );
-}
-$share_plugin = preg_grep( '/\/jetpack\.php$/i', $share_plugin );
-
-if ( empty( $share_plugin ) ) {
-
-	add_action( 'admin_notices', 'mwpjp_install_jetpack' );
 
 	// Prompt to install Jetpack
-	function mwpjp_install_jetpack() {
+	public function install_jetpack() {
 		echo '<div class="error"><p>';
-		printf(__( 'To use the ManageWP.org sharing plugin, you\'ll need to install and activate <a href="%1$s">Jetpack</a> first.'), 'plugin-install.php?tab=search&s=jetpack&plugin-search-input=Search+Plugins','mwpjp' );
+		printf(__( 'To use the ManageWP.org sharing plugin, you\'ll need to install and activate <a href="%1$s">Jetpack</a> first, and <a href="%2$s">activate the Sharing module</a>.'),
+		'plugin-install.php?tab=search&s=jetpack&plugin-search-input=Search+Plugins',
+		'admin.php?page=jetpack_modules',
+		'mwpjp'
+		);
 		echo '</p></div>';
 	}
 
-} elseif ( ! class_exists( 'Sharing_Source' ) ) {
-	include_once( preg_replace( '/jetpack\.php$/i', 'modules/sharedaddy/sharing-sources.php', reset( $share_plugin ) ) );
-
-// Build button
-class Share_Mwporg extends Sharing_Source {
-	var $shortname = 'mwp';
-	public function __construct( $id, array $settings ) {
-		parent::__construct( $id, $settings );
-		$this->smart = 'official' == $this->button_style;
-		$this->icon = 'icon' == $this->button_style;
-		$this->button_style = 'icon-text';
-	}
-
-	public function get_name() {
-		return __( 'ManageWP.org', 'mwpjp' );
-	}
-
-	public function get_display( $post ) {
-		if ( $this->smart ) {
-			return '<script src="http://managewp.org/share.js" data-type="small" data-title="" data-url="'. get_permalink( $post->ID ) .'"></script>';
-		} else if ( $this->icon ) {
-			return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. get_permalink( $post->ID ) .'"><span></span></a>';
-		} else {
-			return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. get_permalink( $post->ID ) .'"><span>ManageWP.org</span></a>';
-		}
-	}
-
-	// Add the ManageWP.org Button to the list of services in Sharedaddy
-	public function inject_service( $services ) {
-		if ( ! array_key_exists( 'mwp', $services ) ) {
-			$services['mwp'] = 'Share_Mwporg';
-		}
-		return $services;
-	}
 }
-
-} // End check for Sharing_Source
 
 // And boom.
 Mwporg_Button::get_instance();
