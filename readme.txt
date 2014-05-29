@@ -3,7 +3,7 @@ Contributors: jeherve
 Tags: WordPress.com, Jetpack, sharing, ManageWP, mwp
 Requires at least: 3.8
 Tested up to: 3.9.1
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 
 Add a ManageWP.org sharing button to the Jetpack Sharing module
 
@@ -27,6 +27,9 @@ Kudos to [Jeff](https://twitter.com/jeffr0) who gave me the idea for this plugin
 6. Enjoy! :)
 
 == Changelog ==
+
+= 1.2.2 =
+* Fix Fatal error when Jetpack is deactivated
 
 = 1.2 =
 * Update sharing button to be compatible with Jetpack 3.0

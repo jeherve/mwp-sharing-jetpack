@@ -4,7 +4,7 @@
  * Plugin URI: http://wordpress.org/plugins/mwp-sharing-jetpack/
  * Description: Add a ManageWP.org button to the Jetpack Sharing module
  * Author: Jeremy Herve
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author URI: http://jeremyherve.com
  * License: GPL2+
  * Text Domain: mwpjp
