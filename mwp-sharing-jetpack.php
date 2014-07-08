@@ -32,6 +32,7 @@ class Mwporg_Button {
 	public function setup() {
 		add_filter( 'sharing_services',   array( $this, 'inject_service' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'icon_style' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'update_sharing_count' ) );
 	}
 
 	// Add the ManageWP.org Button to the list of services in Sharedaddy
@@ -46,6 +47,12 @@ class Mwporg_Button {
 	public function icon_style() {
 		wp_register_style( 'mwpjp', plugins_url( 'style.css', __FILE__) );
 		wp_enqueue_style( 'mwpjp' );
+	}
+
+	// Add the javascript necessary for the share count to be displayed
+	public function update_sharing_count() {
+		wp_register_script( 'mwpjp', plugins_url('sharing_count.js', __FILE__), array('jquery') );
+		wp_enqueue_script( 'mwpjp' );
 	}
 
 	// Prompt to install Jetpack
