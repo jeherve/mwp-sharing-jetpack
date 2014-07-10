@@ -53,7 +53,7 @@ class Mwporg_Button {
 
 	// Add the javascript necessary for the share count to be displayed
 	public function update_sharing_count() {
-		wp_register_script( 'mwpjp', plugins_url( 'sharing_count.js', __FILE__ ), array( 'jquery' ), MWPJP__VERSION, true );
+		wp_register_script( 'mwpjp', plugins_url( 'sharing-count.js', __FILE__ ), array( 'jquery' ), MWPJP__VERSION, true );
 		wp_enqueue_script( 'mwpjp' );
 	}
 
