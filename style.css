@@ -6,7 +6,16 @@
 .sd-social-icon .sd-content ul li[class*='share-'].share-mwp a.sd-button {
 	background: #2185C7 url('mwp-white.png') no-repeat;
 	color: #fff !important;
-	width: 16px;
-	height: 16px;
-	top: 16px;
+	display: inline-block;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font: 400 16px/1 Genericons;
+	vertical-align: top;
+	position: relative;
+	top: 3;
+	text-align: center;
+}
+
+.sd-social-icon .sd-content ul li[class*='share-'].share-mwp a.sd-button:before {
+	content: '\f415';
 }
