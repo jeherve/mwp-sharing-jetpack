@@ -20,9 +20,9 @@ class Share_Mwporg extends Share_Twitter {
 		if ( $this->smart ) {
 			return '<script src="http://managewp.org/share.js" data-type="small" data-title="" data-url="'. get_permalink( $post->ID ) .'"></script>';
 		} else if ( $this->icon ) {
-			return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. get_permalink( $post->ID ) .'" id="sharing-mwporg-' . $post->ID . '"><span></span></a>';
+			return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. urlencode( get_permalink( $post->ID ) ) .'" id="sharing-mwporg-' . $post->ID . '"><span></span></a>';
 		} else {
-			return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. get_permalink( $post->ID ) .'" id="sharing-mwporg-' . $post->ID . '"><span>ManageWP.org</span></a>';
+			return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. urlencode( get_permalink( $post->ID ) ) .'" id="sharing-mwporg-' . $post->ID . '"><span>ManageWP.org</span></a>';
 		}
 	}
 }
