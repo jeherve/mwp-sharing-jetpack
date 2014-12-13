@@ -1,9 +1,9 @@
 === ManageWP.org sharing for Jetpack ===
 Contributors: jeherve
 Tags: WordPress.com, Jetpack, sharing, ManageWP, mwp
-Requires at least: 3.8
-Tested up to: 4.0
-Stable tag: 1.4
+Requires at least: 3.9
+Tested up to: 4.1
+Stable tag: 1.5
 
 Add a ManageWP.org sharing button to the Jetpack Sharing module
 
@@ -28,24 +28,30 @@ Kudos to [Jeff](https://twitter.com/jeffr0) who gave me the idea for this plugin
 
 == Changelog ==
 
+= 1.5 =
+* urlencode post links in sharing link.
+* Make sure the icons are aligned properly.
+* Reorganize the buttons to match the new buttons added in Jetpack 3.3 ([reference](https://github.com/Automattic/jetpack/pull/1374)).
+* Do not enqueue the sharing count js when sharing counts are disabled via the `jetpack_sharing_counts` filter ([reference](https://github.com/Automattic/jetpack/pull/1343)).
+
 = 1.4 =
-* Fix Javascript error when the sharing button isn't on a page, props @tommcfarlin
+* Fix Javascript error when the sharing button isn't on a page, props @tommcfarlin.
 
 = 1.3 =
-* Add sharing count to Text and Icon buttons, props @proof
+* Add sharing count to Text and Icon buttons, props @proof.
 
 = 1.2.3 =
-* Refactor the plugin organization to avoid all Fatal errors
-* Better warning system if Jetpack or the sharing module are not active
+* Refactor the plugin organization to avoid all Fatal errors.
+* Better warning system if Jetpack or the sharing module are not active.
 
 = 1.2.2 =
-* Fix Fatal error when Jetpack is deactivated
+* Fix Fatal error when Jetpack is deactivated.
 
 = 1.2 =
-* Update sharing button to be compatible with Jetpack 3.0
+* Update sharing button to be compatible with Jetpack 3.0.
 
 = 1.1 =
-* Display a notice when Jetpack is not active
+* Display a notice when Jetpack is not active.
 
 = 1.0 =
-* Initial Release
+* Initial Release.
