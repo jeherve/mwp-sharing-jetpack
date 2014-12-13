@@ -34,7 +34,10 @@ class Mwporg_Button {
 	public function setup() {
 		add_filter( 'sharing_services',   array( $this, 'inject_service' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'icon_style' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'update_sharing_count' ) );
+		// Only add sharing counts if it's set like that in Jetpack
+		if ( apply_filters( 'jetpack_sharing_counts', true ) ) {
+			add_action( 'wp_enqueue_scripts', array( $this, 'update_sharing_count' ) );
+		}
 	}
 
 	// Add the ManageWP.org Button to the list of services in Sharedaddy
