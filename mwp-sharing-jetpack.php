@@ -5,7 +5,7 @@
  * Description: Add a ManageWP.org button to the Jetpack Sharing module
  * Author: Jeremy Herve
  * Version: 1.4
- * Author URI: http://jeremyherve.com
+ * Author URI: http://jeremy.hu
  * License: GPL2+
  * Text Domain: mwpjp
  */
