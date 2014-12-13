@@ -8,8 +8,6 @@ class Share_Mwporg extends Share_Twitter {
 	public function __construct( $id, array $settings ) {
 		parent::__construct( $id, $settings );
 		$this->smart = 'official' == $this->button_style;
-		$this->icon = 'icon' == $this->button_style;
-		$this->button_style = 'icon-text';
 	}
 
 	public function get_name() {
@@ -17,13 +15,27 @@ class Share_Mwporg extends Share_Twitter {
 	}
 
 	public function get_display( $post ) {
+		$display = '';
+
 		if ( $this->smart ) {
-			return '<script src="http://managewp.org/share.js" data-type="small" data-title="" data-url="'. get_permalink( $post->ID ) .'"></script>';
-		} else if ( $this->icon ) {
-			return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. urlencode( get_permalink( $post->ID ) ) .'" id="sharing-mwporg-' . $post->ID . '"><span></span></a>';
+			$display .= sprintf( '<script src="http://managewp.org/share.js" data-type="small" data-title="" data-url="%s"></script>', esc_url( get_permalink( $post->ID ) ) );
 		} else {
-			return '<a target="_blank" rel="nofollow" class="share-mwp sd-button share-icon" href="http://managewp.org/share/form?url='. urlencode( get_permalink( $post->ID ) ) .'" id="sharing-mwporg-' . $post->ID . '"><span>ManageWP.org</span></a>';
+			$display = Sharing_Source::get_link( get_permalink( $post->ID ), _x( 'ManageWP.org', 'share to', 'mwpjp' ), __( 'Share on ManageWP.org', 'mwpjp' ), 'share=mwp', 'sharing-mwp-' . $post->ID );
 		}
+
+		if ( apply_filters( 'jetpack_register_post_for_share_counts', true, $post->ID, 'mwp' ) ) {
+			sharing_register_post_for_share_counts( $post->ID );
+		}
+
+		return $display;
+	}
+
+	public function process_request( $post, array $post_data ) {
+		$managewp_url = set_url_scheme( sprintf( 'http://managewp.org/share/form?url=%s', rawurlencode( get_permalink( $post->ID ) ) ) );
+
+		// Redirect to ManageWP.org
+		wp_redirect( $managewp_url );
+		die();
 	}
 }
 
