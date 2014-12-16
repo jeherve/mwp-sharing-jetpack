@@ -33,6 +33,7 @@ Kudos to [Jeff](https://twitter.com/jeffr0) who gave me the idea for this plugin
 * Make sure the icons are aligned properly.
 * Reorganize the buttons to match the new buttons added in Jetpack 3.3 ([reference](https://github.com/Automattic/jetpack/pull/1374)).
 * Do not enqueue the sharing count js when sharing counts are disabled via the `jetpack_sharing_counts` filter ([reference](https://github.com/Automattic/jetpack/pull/1343)).
+* Fix the WPCOM_sharing_counts global variable shadowing, props @zinigor
 
 = 1.4 =
 * Fix Javascript error when the sharing button isn't on a page, props @tommcfarlin.
