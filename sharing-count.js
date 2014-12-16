@@ -1,7 +1,7 @@
 (function( $ ) {
 
 	// Initialize to an empty until it's populated by the response
-	var WPCOM_sharing_counts = [];
+	WPCOM_sharing_counts = WPCOM_sharing_counts || [];
 
 	window.update_mpworg_widget = update_mpworg_widget;
 
