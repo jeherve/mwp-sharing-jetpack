@@ -29,7 +29,7 @@
 
 			// Only send a request if a matching widget is found
 			if ( jQuery( 'a[data-shared=sharing-mwp-' + id  + ']' ).length ) {
-				$.getScript( 'http://managewp.org/share/frame/small?url=' + encodeURIComponent( url ) + '&callback=update_mpworg_widget' );
+				$.getScript( '//managewp.org/share/frame/small?url=' + encodeURIComponent( url ) + '&callback=update_mpworg_widget' );
 			}
 
 		}
