@@ -4,13 +4,13 @@
  * Plugin URI: http://wordpress.org/plugins/mwp-sharing-jetpack/
  * Description: Add a ManageWP.org button to the Jetpack Sharing module
  * Author: Jeremy Herve
- * Version: 1.5
+ * Version: 1.5.1
  * Author URI: http://jeremy.hu
  * License: GPL2+
  * Text Domain: mwpjp
  */
 
-define( 'MWPJP__VERSION', '1.5' );
+define( 'MWPJP__VERSION', '1.5.1' );
 
 class Mwporg_Button {
 	private static $instance;
