@@ -28,6 +28,9 @@ Kudos to [Jeff](https://twitter.com/jeffr0) who gave me the idea for this plugin
 
 == Changelog ==
 
+= 1.5.1 =
+* Avoid Mixed content warnings on https sites by fetching sharing counts via https when necessary, props @swissspidy
+
 = 1.5 =
 * urlencode post links in sharing link.
 * Make sure the icons are aligned properly.
